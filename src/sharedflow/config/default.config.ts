@@ -4,7 +4,7 @@ export default () => ({
         logLevel: process.env.LOG_LEVEL || 'debug',
         port: Number(process.env.PORT) || 8080,
     },
-    env: process.env.NODE_ENV,
+    env: process.env.NODE_ENV || 'development',
     database: {
         mongo: {
             host: process.env.DB_MONGO_HOST,
@@ -24,11 +24,5 @@ export default () => ({
     jwt: {
         secret: process.env.JWT_SECRET,
         expiresIn: process.env.JWT_SECRET_EXPIRES || 10000,
-    },
-    services: {
-        products: {
-            baseUrl: process.env.PRODUCTS_BASE_URL || '',
-            timeout: Number(process.env.PRODUCTS_TIMEOUT) || 10000,
-        },
     },
 });
