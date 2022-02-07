@@ -11,7 +11,7 @@ services:
               protocol: tcp
               mode: host
         volumes:
-            - data-pgsql:/var/lib/postgresql/data
+            - pgsql_data:/var/lib/postgresql/data
         environment:
             POSTGRES_USER: pguser
             POSTGRES_PASSWORD: pgpassword
@@ -24,7 +24,7 @@ services:
             PUID: 1000
             PGID: 1000
         volumes:
-            - data-mongodb:/data/db
+            - mongodb_data:/data/db
         ports:
             - target: 27017
               published: 27017
@@ -43,7 +43,7 @@ services:
               protocol: tcp
               mode: host
         volumes:
-            - data-redis:/storage/redis/data:/data
+            - redis_data:/data
         networks:
             - apps-network
     client:
@@ -116,9 +116,9 @@ services:
             - mongodb
 
 volumes:
-    pgsql:
-    mongodb:
-    redis:
+    pgsql_data:
+    mongodb_data:
+    redis_data:
 
 networks:
     apps-network:
