@@ -1,104 +1,124 @@
 version: '3'
 
 services:
-  pgsql:
-    container_name: pgsql
-    restart: always
-    image: postgres:alpine
-    ports:
-      - 5432:5432
-    volumes:
-      - pg-data:/var/lib/postgresql/data
-    environment:
-      POSTGRES_USER: pguser
-      POSTGRES_PASSWORD: pgpassword
-    networks:
-      - apps-network
-  mongodb:
-    image : mongo:latest
-    container_name: mongodb
-    environment:
-      PUID: 1000
-      PGID: 1000
-    volumes:
-      - data-mongodb:/data/db
-    ports:
-      - 27017:27017
-    restart: always
-    networks:
-      - apps-network
-  client:
-    container_name: client
-    build:
-      context: .
-      dockerfile: ./Dockerfile
-    command: npm run start:client
-    ports:
-      - 3000:3000
-    volumes:
-      - .:/usr/src/app
-      - /usr/src/app/node_modules
-    restart: unless-stopped
-    networks:
-      - apps-network    
-    links:
-      - pgsql
-    depends_on:
-      - pgsql  
-  auth:
-    container_name: auth
-    build:
-      context: .
-      dockerfile: ./Dockerfile
-    command: npm run start:auth
-    ports:
-      - 3001:3001
-    volumes:
-      - .:/usr/src/app
-      - /usr/src/app/node_modules
-    restart: unless-stopped
-    networks:
-      - apps-network
-    links:
-      - pgsql
-    depends_on:
-      - pgsql
-  product:
-    container_name: product
-    build:
-      context: .
-      dockerfile: ./Dockerfile
-    command: npm run start:product
-    ports:
-      - 3002:3002
-    volumes:
-      - .:/usr/src/app
-      - /usr/src/app/node_modules
-    restart: unless-stopped
-    networks:
-      - apps-network   
-  wishlist:
-    container_name: wishlist
-    build:
-      context: .
-      dockerfile: ./Dockerfile
-    command: npm run start:wishlist
-    ports:
-      - 3003:3003
-    volumes:
-      - .:/usr/src/app
-      - /usr/src/app/node_modules
-    restart: unless-stopped
-    networks:
-      - apps-network
-    links:
-      - mongodb
-    depends_on:
-      - mongodb      
+    pgsql:
+        container_name: pgsql
+        restart: always
+        image: postgres:alpine
+        ports:
+            - target: 5432
+              published: 5432
+              protocol: tcp
+              mode: host
+        volumes:
+            - data-pgsql:/var/lib/postgresql/data
+        environment:
+            POSTGRES_USER: pguser
+            POSTGRES_PASSWORD: pgpassword
+        networks:
+            - apps-network
+    mongodb:
+        image: mongo:latest
+        container_name: mongodb
+        environment:
+            PUID: 1000
+            PGID: 1000
+        volumes:
+            - data-mongodb:/data/db
+        ports:
+            - target: 27017
+              published: 27017
+              protocol: tcp
+              mode: host
+        restart: always
+        networks:
+            - apps-network
+    redis:
+        container_name: redis
+        restart: always
+        image: redis:alpine
+        ports:
+            - target: 6379
+              published: 6379
+              protocol: tcp
+              mode: host
+        volumes:
+            - data-redis:/storage/redis/data:/data
+        networks:
+            - apps-network
+    client:
+        container_name: client
+        build:
+            context: .
+            dockerfile: ./Dockerfile
+        command: npm run start:client
+        ports:
+            - 3000:3000
+        volumes:
+            - .:/usr/src/app
+            - /usr/src/app/node_modules
+        restart: unless-stopped
+        networks:
+            - apps-network
+        links:
+            - pgsql
+        depends_on:
+            - pgsql
+    auth:
+        container_name: auth
+        build:
+            context: .
+            dockerfile: ./Dockerfile
+        command: npm run start:auth
+        ports:
+            - 3001:3001
+        volumes:
+            - .:/usr/src/app
+            - /usr/src/app/node_modules
+        restart: unless-stopped
+        networks:
+            - apps-network
+        links:
+            - pgsql
+        depends_on:
+            - pgsql
+    product:
+        container_name: product
+        build:
+            context: .
+            dockerfile: ./Dockerfile
+        command: npm run start:product
+        ports:
+            - 3002:3002
+        volumes:
+            - .:/usr/src/app
+            - /usr/src/app/node_modules
+        restart: unless-stopped
+        networks:
+            - apps-network
+    wishlist:
+        container_name: wishlist
+        build:
+            context: .
+            dockerfile: ./Dockerfile
+        command: npm run start:wishlist
+        ports:
+            - 3003:3003
+        volumes:
+            - .:/usr/src/app
+            - /usr/src/app/node_modules
+        restart: unless-stopped
+        networks:
+            - apps-network
+        links:
+            - mongodb
+        depends_on:
+            - mongodb
 
 volumes:
-  pgsql:
-  mongodb:  
+    pgsql:
+    mongodb:
+    redis:
 
 networks:
-  apps-network:    
+    apps-network:
