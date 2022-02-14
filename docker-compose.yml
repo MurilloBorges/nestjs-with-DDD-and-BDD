@@ -49,9 +49,11 @@ services:
     client:
         container_name: client
         build:
-            context: .
-            dockerfile: ./Dockerfile
+            context: ./src/client
+            dockerfile: ./node.Dockerfile
         command: npm run start:client
+        environment:
+            - PORT=3000
         ports:
             - 3000:3000
         volumes:
@@ -67,9 +69,11 @@ services:
     auth:
         container_name: auth
         build:
-            context: .
-            dockerfile: ./Dockerfile
+            context: ./src/authentication
+            dockerfile: ./node.Dockerfile
         command: npm run start:auth
+        environment:
+            - PORT=3001
         ports:
             - 3001:3001
         volumes:
@@ -85,9 +89,11 @@ services:
     product:
         container_name: product
         build:
-            context: .
-            dockerfile: ./Dockerfile
+            context: ./src/product
+            dockerfile: ./node.Dockerfile
         command: npm run start:product
+        environment:
+            - PORT=3002
         ports:
             - 3002:3002
         volumes:
@@ -99,9 +105,11 @@ services:
     wishlist:
         container_name: wishlist
         build:
-            context: .
-            dockerfile: ./Dockerfile
+            context: ./src/wishlist
+            dockerfile: ./node.Dockerfile
         command: npm run start:wishlist
+        environment:
+            - PORT=3003
         ports:
             - 3003:3003
         volumes:

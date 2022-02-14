@@ -1,9 +1,12 @@
 import { Module } from '@nestjs/common';
-import { ClientService } from './client.service';
-import { ClientController } from './client.controller';
+import { ClientService } from './services/client.service';
+import { ClientController } from './controllers/client.controller';
+import { SharedModule } from '../shared/shared.module';
+import HealthCheckModule from './healthcheck.module';
 
 @Module({
-  controllers: [ClientController],
-  providers: [ClientService]
+    imports: [SharedModule, HealthCheckModule],
+    controllers: [ClientController],
+    providers: [ClientService],
 })
 export class ClientModule {}
