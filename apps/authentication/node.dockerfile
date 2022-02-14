@@ -6,7 +6,7 @@ WORKDIR /usr/src/app
 
 # ADD ../shared ./
 
-COPY package.json ./
+COPY package*.json tsconfig*.json ./
 
 RUN npm install
 
@@ -22,6 +22,6 @@ USER node
 
 EXPOSE ${PORT}
 
-WORKDIR /usr/src/app/dist
+WORKDIR /usr/src/app/dist/
 
 CMD ["node", "dist/main"]
