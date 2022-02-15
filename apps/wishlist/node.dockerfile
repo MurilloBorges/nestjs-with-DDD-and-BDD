@@ -22,6 +22,6 @@ USER node
 
 EXPOSE ${PORT}
 
-WORKDIR /usr/src/app/dist/
+WORKDIR /usr/src/app/dist/wishlist/
 
-CMD ["node", "dist/main"]
+CMD ["node", "src/main"]
