@@ -4,9 +4,9 @@ RUN mkdir -p /usr/src/app/node_modules && chown -R node:node /usr/src/app
 
 WORKDIR /usr/src/app
 
-ADD ./apps/shared ./
+ADD ./shared ./
 
-COPY ./apps/wishlist/package*.json ./apps/wishlist/tsconfig*.json ./
+COPY package*.json ./ tsconfig*.json ./
 
 RUN npm install
 

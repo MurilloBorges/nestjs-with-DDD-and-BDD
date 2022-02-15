@@ -1,44 +1,5 @@
 {
+    "language": "ts",
     "collection": "@nestjs/schematics",
-    "sourceRoot": "apps/authenticate",
-    "monorepo": true,
-    "root": "apps/authenticate",
-    "projects": {
-        "authenticate": {
-            "type": "application",
-            "root": "apps/authenticate",
-            "entryFile": "main",
-            "sourceRoot": "apps/authenticate",
-            "compilerOptions": {
-                "tsConfigPath": "./tsconfig.json"
-            }
-        },
-        "client": {
-            "type": "application",
-            "root": "apps/client",
-            "entryFile": "main",
-            "sourceRoot": "apps/client",
-            "compilerOptions": {
-                "tsConfigPath": "./tsconfig.json"
-            }
-        },
-        "product": {
-            "type": "application",
-            "root": "apps/product",
-            "entryFile": "main",
-            "sourceRoot": "apps/product",
-            "compilerOptions": {
-                "tsConfigPath": "./tsconfig.json"
-            }
-        },
-        "wishlist": {
-            "type": "application",
-            "root": "apps/wishlist",
-            "entryFile": "main",
-            "sourceRoot": "apps/wishlist",
-            "compilerOptions": {
-                "tsConfigPath": "./tsconfig.json"
-            }
-        }
-    }
+    "sourceRoot": "src"
 }

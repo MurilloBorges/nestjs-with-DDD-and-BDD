@@ -49,9 +49,9 @@ services:
     client:
         container_name: client
         build:
-            context: ./src/client
-            dockerfile: ./node.Dockerfile
-        command: npm run start:client
+            context: ./apps/client
+            dockerfile: ./node.dockerfile
+        command: npm run start
         environment:
             - PORT=3000
         ports:
@@ -66,12 +66,12 @@ services:
             - pgsql
         depends_on:
             - pgsql
-    auth:
-        container_name: auth
+    authentication:
+        container_name: authentication
         build:
-            context: ./src/authentication
-            dockerfile: ./node.Dockerfile
-        command: npm run start:auth
+            context: ./apps/authentication
+            dockerfile: ./node.dockerfile
+        command: npm run start
         environment:
             - PORT=3001
         ports:
@@ -89,9 +89,9 @@ services:
     product:
         container_name: product
         build:
-            context: ./src/product
-            dockerfile: ./node.Dockerfile
-        command: npm run start:product
+            context: ./apps/product
+            dockerfile: ./node.dockerfile
+        command: npm run start
         environment:
             - PORT=3002
         ports:
@@ -105,9 +105,9 @@ services:
     wishlist:
         container_name: wishlist
         build:
-            context: ./src/wishlist
-            dockerfile: ./node.Dockerfile
-        command: npm run start:wishlist
+            context: ./apps/wishlist
+            dockerfile: ./node.dockerfile
+        command: npm run start
         environment:
             - PORT=3003
         ports:
