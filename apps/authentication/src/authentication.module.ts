@@ -1,11 +1,14 @@
 import { Module } from '@nestjs/common';
-import { AuthenticationService } from './authentication.service';
-import { AuthenticationController } from './authentication.controller';
-import { SharedModule } from '../shared/shared.module';
+import { AuthenticationService } from './services/authentication.service';
+import { AuthenticationController } from './controllers/authentication.controller';
+import { SharedModule } from '../../shared/src/shared.module';
+import HealthModule from './healthcheck.module';
 
 @Module({
-    imports: [SharedModule],
+    imports: [SharedModule, HealthModule],
     controllers: [AuthenticationController],
     providers: [AuthenticationService],
 })
-export class AuthenticationModule {}
+export class AuthenticationModule {
+
+}
