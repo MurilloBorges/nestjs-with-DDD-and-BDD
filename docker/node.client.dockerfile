@@ -4,9 +4,9 @@ RUN mkdir -p /usr/src/app/node_modules && chown -R node:node /usr/src/app
 
 WORKDIR /usr/src/app
 
-# ADD ../shared ./
+ADD ./apps/shared ./
 
-COPY package*.json tsconfig*.json ./
+COPY ./apps/client/package*.json ./apps/client/tsconfig*.json ./
 
 RUN npm install
 
@@ -14,7 +14,7 @@ COPY . .
 
 RUN rm -rf dist
 
-RUN npm run build:client
+RUN npm run build
 
 COPY --chown=node:node . .
 
