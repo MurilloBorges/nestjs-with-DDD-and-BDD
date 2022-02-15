@@ -1,8 +1,8 @@
 import { Controller } from '@nestjs/common';
 import { MessagePattern, Payload } from '@nestjs/microservices';
-import { AuthenticationService } from './authentication.service';
-import { CreateAuthenticationDto } from './dto/create-authentication.dto';
-import { UpdateAuthenticationDto } from './dto/update-authentication.dto';
+import { AuthenticationService } from '../services/authentication.service';
+import { CreateAuthenticationDto } from '../dto/create-authentication.dto';
+import { UpdateAuthenticationDto } from '../dto/update-authentication.dto';
 
 @Controller()
 export class AuthenticationController {

@@ -1,5 +1,5 @@
 import { NestFactory } from '@nestjs/core';
-import { WishlistModule } from './wishlist.module';
+import { WishlistModule } from '../wishlist.module';
 
 async function bootstrap() {
     const app = await NestFactory.create(WishlistModule);
