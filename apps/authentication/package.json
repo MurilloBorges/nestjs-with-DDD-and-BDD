@@ -7,11 +7,7 @@
     "license": "UNLICENSED",
     "scripts": {
         "prebuild": "rimraf dist",
-        "build:authentication": "npm run prebuild && nest build authenticate",
-        "build:client": "npm run prebuild && nest build client",
-        "build:product": "npm run prebuild && nest build product",
-        "build:wishlist": "npm run prebuild && nest build wishlist",
-        "build:shared": "npm run prebuild && nest build shared",
+        "build": "npm run prebuild && tsc -p ../../tsconfig.build.json",
         "format": "prettier --write \"src/**/*.ts\" \"test/**/*.ts\"",
         "start": "nest start",
         "start:dev": "nest start --watch",
