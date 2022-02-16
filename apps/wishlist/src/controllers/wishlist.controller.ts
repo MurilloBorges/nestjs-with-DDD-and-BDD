@@ -1,8 +1,8 @@
 import { Controller } from '@nestjs/common';
 import { MessagePattern, Payload } from '@nestjs/microservices';
-import { WishlistService } from './wishlist.service';
-import { CreateWishlistDto } from './dto/create-wishlist.dto';
-import { UpdateWishlistDto } from './dto/update-wishlist.dto';
+import { WishlistService } from '../services/wishlist.service';
+import { CreateWishlistDto } from '../dto/create-wishlist.dto';
+import { UpdateWishlistDto } from '../dto/update-wishlist.dto';
 
 @Controller()
 export class WishlistController {

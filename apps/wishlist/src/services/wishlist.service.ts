@@ -1,6 +1,6 @@
 import { Injectable } from '@nestjs/common';
-import { CreateWishlistDto } from './dto/create-wishlist.dto';
-import { UpdateWishlistDto } from './dto/update-wishlist.dto';
+import { CreateWishlistDto } from '../dto/create-wishlist.dto';
+import { UpdateWishlistDto } from '../dto/update-wishlist.dto';
 
 @Injectable()
 export class WishlistService {

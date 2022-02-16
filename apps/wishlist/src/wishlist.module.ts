@@ -1,10 +1,9 @@
 import { Module } from '@nestjs/common';
-import { WishlistService } from './wishlist.service';
-import { WishlistController } from './wishlist.controller';
-import { SharedModule } from '../shared/shared.module';
+import { WishlistService } from './services/wishlist.service';
+import { WishlistController } from './controllers/wishlist.controller';
 
 @Module({
-    imports: [SharedModule],
+    imports: [],
     controllers: [WishlistController],
     providers: [WishlistService],
 })

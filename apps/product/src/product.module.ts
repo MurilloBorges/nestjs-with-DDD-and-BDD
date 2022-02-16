@@ -1,10 +1,10 @@
 import { Module } from '@nestjs/common';
-import { ProductService } from './product.service';
-import { ProductController } from './product.controller';
-import { SharedModule } from '../shared/shared.module';
+import { ProductService } from './services/product.service';
+import { ProductController } from './controllers/product.controller';
+import HealthModule from './healthcheck.module';
 
 @Module({
-    imports: [SharedModule],
+    imports: [HealthModule],
     controllers: [ProductController],
     providers: [ProductService],
 })
