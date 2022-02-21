@@ -1,25 +1,19 @@
 FROM node:16.13.0-alpine
 
-RUN mkdir -p /usr/src/app/node_modules && chown -R node:node /usr/src/app
-
 WORKDIR /usr/src/app
 
-COPY package*.json ./ tsconfig*.json ./
+ADD ./shared ./shared
+
+ADD ./wishlist ./wishlist
+
+WORKDIR /usr/src/app/wishlist
 
 RUN npm install
 
-COPY . .
-
-RUN rm -rf dist
-
 RUN npm run build
 
-COPY --chown=node:node . .
+# EXPOSE ${PORT}
 
-USER node
+EXPOSE 3000
 
-EXPOSE ${PORT}
-
-WORKDIR /usr/src/app/dist/wishlist/
-
-CMD ["node", "src/main"]
+CMD ["node", "dist/wishlist/src/main"]
