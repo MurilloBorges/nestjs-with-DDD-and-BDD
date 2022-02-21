@@ -1,4 +1,4 @@
-import logger from '.';
+import logger from './logger';
 
 class LoggerHandler {
     static log({

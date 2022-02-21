@@ -9,7 +9,12 @@ export type RequestWrapperPayload = {
 };
 
 class RequestWrapper {
-    async request({ httpClientInstance, requestOptions, cancelToken, defaultTimeout }: RequestWrapperPayload) {
+    async request({
+        httpClientInstance,
+        requestOptions,
+        cancelToken,
+        defaultTimeout,
+    }: RequestWrapperPayload) {
         const requestUrl = `${httpClientInstance.defaults.baseURL}${requestOptions.url}`;
         const requestTimeout =
             Number(httpClientInstance.defaults.timeout) ||
