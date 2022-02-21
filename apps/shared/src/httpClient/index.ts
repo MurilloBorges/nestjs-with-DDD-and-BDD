@@ -1,6 +1,6 @@
 import axios, { AxiosInstance, AxiosRequestHeaders } from 'axios';
 import adapter from 'axios/lib/adapters/http';
-import LogHandler from '../logger/LogHandler';
+import LoggerHandler from '../logger/logger.handler';
 
 export type NewHttpClientPayload = {
     readonly baseUrl: string;
@@ -18,7 +18,7 @@ function newHttpClient({ baseUrl, headers, params, timeout }: NewHttpClientPaylo
         timeout,
     });
 
-    LogHandler.log({
+    LoggerHandler.log({
         level: 'debug',
         message: `newHttpClient - Creating new client for baseUrl: ${baseUrl}`,
     });

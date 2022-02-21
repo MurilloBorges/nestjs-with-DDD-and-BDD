@@ -1,6 +1,6 @@
-import logger from './logger';
+import logger from '.';
 
-class LogHandler {
+class LoggerHandler {
     static log({
         message,
         consumer = 'Unknown',
@@ -38,4 +38,4 @@ class LogHandler {
     }
 }
 
-export default LogHandler;
+export default LoggerHandler;
