@@ -3,9 +3,11 @@ import { MessagePattern, Payload } from '@nestjs/microservices';
 import { AuthenticationService } from '../services/authentication.service';
 import { CreateAuthenticationDto } from '../dto/create-authentication.dto';
 import { UpdateAuthenticationDto } from '../dto/update-authentication.dto';
-import ApiSinglenton from '../../../shared/src/utils/api.singleton';
+import Singlenton from '../../../shared/src/utils/singleton';
 
-@Controller(`${ApiSinglenton.Version}/auth`)
+const instance: Singlenton = Singlenton.Instance;
+
+@Controller(`${instance.ApiVersion}/auth`)
 export class AuthenticationController {
     constructor(private readonly authenticationService: AuthenticationService) {}
 

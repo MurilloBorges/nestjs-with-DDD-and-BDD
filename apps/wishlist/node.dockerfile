@@ -4,6 +4,12 @@ WORKDIR /usr/src/app
 
 ADD ./shared ./shared
 
+WORKDIR /usr/src/app/shared
+
+RUN npm install
+
+WORKDIR /usr/src/app
+
 ADD ./wishlist ./wishlist
 
 WORKDIR /usr/src/app/wishlist

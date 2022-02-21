@@ -4,6 +4,12 @@ WORKDIR /usr/src/app
 
 ADD ./shared ./shared
 
+WORKDIR /usr/src/app/shared
+
+RUN npm install
+
+WORKDIR /usr/src/app
+
 ADD ./client ./client
 
 WORKDIR /usr/src/app/client

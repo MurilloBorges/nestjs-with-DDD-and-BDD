@@ -1,8 +1,10 @@
 import { Controller, Get } from '@nestjs/common';
 import { HealthCheckService, HealthCheck } from '@nestjs/terminus';
-import ApiSinglenton from '../../../shared/src/utils/api.singleton';
+import Singlenton from '../../../shared/src/utils/singleton';
 
-@Controller(`${ApiSinglenton.Version}/healthcheck`)
+const instance: Singlenton = Singlenton.Instance;
+
+@Controller(`${instance.ApiVersion}/healthcheck`)
 class HealthCheckController {
     constructor(private health: HealthCheckService) {}
 

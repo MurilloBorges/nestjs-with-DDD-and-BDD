@@ -4,9 +4,15 @@ WORKDIR /usr/src/app
 
 ADD ./shared ./shared
 
-ADD ./produtct ./produtct
+WORKDIR /usr/src/app/shared
 
-WORKDIR /usr/src/app/produtct
+RUN npm install
+
+WORKDIR /usr/src/app
+
+ADD ./product ./product
+
+WORKDIR /usr/src/app/product
 
 RUN npm install
 
@@ -16,4 +22,4 @@ RUN npm run build
 
 EXPOSE 3000
 
-CMD ["node", "dist/produtct/src/main"]
+CMD ["node", "dist/product/src/main"]
